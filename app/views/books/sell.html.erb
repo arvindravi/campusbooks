@@ -1,0 +1,26 @@
+<h2>Sell</h2>
+<%= link_to 'Add Book', new_book_path %>
+
+<h3>
+	My Books
+</h3>
+<% @mybooks.each do |mybook| %>
+<div>
+	<h4>
+		<%= mybook.title %>
+	</h4>
+	<br />
+</div>
+<% end %>
+
+<h3>
+	Books
+</h3>
+<hr />
+<% @books.each do |book| %>
+<div>
+	<h4>
+		<%= book.title %>
+	</h4>
+</div>
+<% end %>
