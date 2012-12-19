@@ -81,8 +81,10 @@ class BooksController < ApplicationController
     end
   end
 
-  def buy
-    ## Continue here Dec 18 - 1:32 AM    
+  def buy    
+    session[:buying_book_id] = params[:id]
+    @book = Book.find_by(_id: params[:id])
+    @user = User.find_by(_id: @book.user_id)
   end
 
   def sell

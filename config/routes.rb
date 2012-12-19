@@ -1,16 +1,16 @@
 Campusbooks::Application.routes.draw do
-  get "session/create"
 
-  get "session/destroy"
+  post "sessions/set", to: 'sessions#set'
 
   get "home/index"
 
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')
-  match 'signout', to: 'sessions#destroy', as: 'signout'
-  resources :books do
+  match 'signout', to: 'sessions#destroy', as: 'signout'  
+  resources :queries
+  resources :books do    
     member do
-      get 'buy'
+      get 'buy'      
     end    
     collection do
       get 'sell'      

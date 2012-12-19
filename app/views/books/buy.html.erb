@@ -1,1 +1,23 @@
-<h1>BUY</h1>
+<div class="modal hide fade" id="buymodal">
+	<div class="modal-header">
+		<div class="pull-right"><a href="/books" data-dismiss="modal" class="close">&times;</a></div>
+		<h3>
+			Buy <%= @book.title %>
+		</h3>
+	</div>
+	<div class="modal-body">		
+		<p>
+			Would you like to buy <%= @book.title %> from <%= @user.first_name %> ?
+		</p>
+	</div>
+	<div class="modal-footer">		
+		<%= link_to 'Yes', new_query_path, :class => 'btn btn-primary' %>
+		<%= link_to 'No', books_path, :class => 'btn' %>
+	</div>
+</div>
+<%= content_for :scripts %>
+<script>
+	$(function(){
+		$('#buymodal').modal();
+	});
+</script>

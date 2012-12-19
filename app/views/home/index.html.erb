@@ -1,16 +1,44 @@
 <h1>Home#index</h1>
 <p>Find me in app/views/home/index.html.erb</p>
-<% if session[:user_id] %>
+<% if !current_user %>
+  <form action="sessions/set" method="post" name="reg" class="form-inline" id="regs">
+    <input type="text" name="reg_no" id="reg_no" autocomplete="off" >      
+    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in", :class => 'btn btn-primary' %>    
+  </form>  
+<% else %>
   <div>  	
   	<%= link_to 'Sell', sell_books_path %>
   </div>
   <div>
   	<%= link_to 'Buy', books_path %>
   </div>
-<% else %>
-  <div>
-  	<p>
-  		Please login
-  	</p>
+  <div id="messages">
+    <p>You have <b><%= @messages.count %></b> unread messages!</p>
+    <% @messages.each do |message| %>
+      <h4>
+       Message from <%= get_username_from_id message.sender_id %>
+      </h4>
+      <p>
+        <%= message.body %>
+      </p>
+    <% end %>
   </div>
+<% end %>  
+<% content_for :scripts do %>
+<script>
+  $(function(){       
+    var button = $('#sign_in');
+    var reg_no_field = $('#reg_no');
+    var reg_no = reg_no_field.val(); 
+    button.addClass("disabled");    
+    button.attr('href','#');    
+    var re = /10(2|3|4)(0|1)(0|9)(4|1)0\d\d/
+    reg_no_field.keydown(function(e){    
+      if(reg_no_field.val().length == 9 && reg_no_field.val().match(re)){        
+        button.removeClass("disabled");
+        button.attr('href','/auth/facebook');              
+      }
+    });    
+  });
+</script>
 <% end %>

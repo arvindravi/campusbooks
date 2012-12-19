@@ -7,16 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div id="user_nav">
+	<div id="user_nav" class="pull-right">
 	  <% if current_user %>
-	  	<img src="<%= current_user.picture_url %>" alt="">
+	  	<img src="<%= current_user.picture_url %>" class="img-rounded" alt="">
 	    Signed in as <strong><%= current_user.name %></strong>!
 	    <%= link_to "Sign out", signout_path, id: "sign_out" %>
 	  <% else %>	  	  	
-	    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+	    Please Login
 	  <% end %>
 	</div>
 <%= yield %>
 
 </body>
+<%= yield :scripts %>
 </html>

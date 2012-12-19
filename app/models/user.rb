@@ -19,10 +19,11 @@ class User
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
       user.oauth_token = auth.credentials.token
+      # user.reg_no = session[:reg_no]
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.save!      
     end    
   end
   
- has_many :books
+ has_many :books 
 end

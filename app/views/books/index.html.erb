@@ -14,10 +14,12 @@
     <td><%= link_to 'Show', book %></td>
     <td><%= link_to 'Edit', edit_book_path(book) %></td>
     <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Buy', buy_book_path(book) %></td>
+    <td>Posted by: <%= get_username_from_book_id book._id %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Book', new_book_path %>
+<%= link_to 'Home', root_path %>
