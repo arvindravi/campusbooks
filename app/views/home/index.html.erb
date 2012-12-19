@@ -13,16 +13,29 @@
   	<%= link_to 'Buy', books_path %>
   </div>
   <div id="messages">
-    <p>You have <b><%= @messages.count %></b> unread messages!</p>
+    <p>You have <b><%= @messages.count %></b> unread message(s)!</p>
     <% @messages.each do |message| %>
-      <h4>
-       Message from <%= get_username_from_id message.sender_id %>
-      </h4>
-      <p>
-        <%= message.body %>
-      </p>
+    <div class="modal hide fade" id="messagemodal">
+      <div class="modal-header">
+        <h3>
+          <%= get_username_from_id message.sender_id %>
+        </h3>
+      </div>
+      <div class="modal-body">
+        <p>
+          <%= message.body %>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <%= link_to 'Close', '#', :class => 'btn', :'data-dismiss' => 'modal' %>
+      </div>
+    </div>
+      <h6>
+       <%= link_to get_username_from_id(message.sender_id) , '#messagemodal', :'data-toggle' => 'modal' %>
+      </h6>
+      
     <% end %>
-  </div>
+  </div>  
 <% end %>  
 <% content_for :scripts do %>
 <script>
