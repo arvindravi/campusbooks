@@ -4,18 +4,21 @@
     <% if !current_user %>
       <div class="hero-unit">
         <h1>
-          <i class="iconic-book-alt2"></i>
+          <i class="icon-book icon-large" style="
+              border-top-width: 50px;
+              margin-top: 35px;
+              margin-right: 50px;
+          "></i>
           Campus Books
           <br />
           <small>
             Online marketplace to buy and sell used books within SRM.
           </small>
         </h1>
-        <hr />
-        
-        <div>
-          <form id="registration_form" action="sessions/set" method="post" class="form-inline">
-           <input type="text" id="reg_no" autocomplete="off" placeholder="Enter your registration no..">           
+        <hr />        
+        <div>       
+          <form id="registration_form" action="sessions/set" method="post" class="form-inline">           
+             <input type="text" id="reg_no" autocomplete="off" placeholder="Enter your registration no..">          
            <%= link_to 'Sign in with Facebook'.html_safe, "/auth/facebook", id: "sign_in", :class => 'btn btn-primary' %>    
           </form>     
         </div>
@@ -54,8 +57,7 @@
             What would you like to do now?
           </h3>
           <div>
-            <%= link_to 'Buy', books_path, :class => 'btn btn-primary btn-large' %>
-            
+            <%= link_to 'Buy', books_path, :class => 'btn btn-primary btn-large' %>            
             <%= link_to 'Sell', sell_books_path, :class => 'btn btn-primary btn-large' %>
           </div>
         </div>       

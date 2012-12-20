@@ -25,6 +25,7 @@ gem 'omniauth-facebook'
 gem 'minitest'
 gem 'cancan'
 gem 'google_analytics'
+gem 'font-awesome-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
