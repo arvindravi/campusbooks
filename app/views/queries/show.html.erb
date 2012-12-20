@@ -1,0 +1,14 @@
+<div id="message">    
+    <div>
+      <h3>
+        <%= get_username_from_id @query.sender_id %>
+      </h3>
+    </div>
+    <div >
+      <p>
+        <%= @query.body %>
+      </p>
+      <!-- Response Field here -->
+    </div>           
+</div>  
+<%= link_to 'Back', queries_path %>

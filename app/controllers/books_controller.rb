@@ -40,7 +40,7 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create    
-    user = User.find_by(uid: session[:user_id])
+    user = User.find_by(_id: session[:user_id])
     @book = user.books.new(params[:book])    
     respond_to do |format|
       if @book.save
@@ -88,7 +88,7 @@ class BooksController < ApplicationController
   end
 
   def sell
-    user = User.find_by(uid: session[:user_id])    
+    user = User.find_by(_id: session[:user_id])    
     @mybooks = user.books.where(user_id: user._id)
     # puts user.books.where(user_id: user._id).inspect
     

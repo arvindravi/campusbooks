@@ -6,35 +6,20 @@
     <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in", :class => 'btn btn-primary' %>    
   </form>  
 <% else %>
+  <div class="pull-right">
+    <% if @unread_messages.blank? %>
+      <p>
+        You have no unread messages!
+      </p>
+    <% else %>      
+      You have <%= link_to @unread_messages.count, queries_path %> unread message(s)!
+    <% end %>
+  </div>
   <div>  	
   	<%= link_to 'Sell', sell_books_path %>
   </div>
   <div>
   	<%= link_to 'Buy', books_path %>
-  </div>
-  <div id="messages">
-    <p>You have <b><%= @messages.count %></b> unread message(s)!</p>
-    <% @messages.each do |message| %>
-    <div class="modal hide fade" id="messagemodal">
-      <div class="modal-header">
-        <h3>
-          <%= get_username_from_id message.sender_id %>
-        </h3>
-      </div>
-      <div class="modal-body">
-        <p>
-          <%= message.body %>
-        </p>
-      </div>
-      <div class="modal-footer">
-        <%= link_to 'Close', '#', :class => 'btn', :'data-dismiss' => 'modal' %>
-      </div>
-    </div>
-      <h6>
-       <%= link_to get_username_from_id(message.sender_id) , '#messagemodal', :'data-toggle' => 'modal' %>
-      </h6>
-      
-    <% end %>
   </div>  
 <% end %>  
 <% content_for :scripts do %>

@@ -1,0 +1,25 @@
+<div>
+	<% if @unread_messages.blank? %>
+		<h4>
+			You have no unread messages!
+		</h4>
+	<% else %>
+		<% @unread_messages.each do |unread_message| %>
+			<b><%= link_to get_username_from_id(unread_message.sender_id), query_path(unread_message._id) %></b> <br />
+		<% end %>
+	<% end %>
+</div>
+<hr />
+
+<h5>
+	My Messages
+</h5>
+<div>
+	<% @read_messages.each do |read_message| %>
+		<p>
+			<%= link_to get_username_from_id(read_message.sender_id), query_path(read_message._id) %> <br />
+		</p>
+	<% end %>
+</div>
+<hr />
+<%= link_to 'Home', root_path %>

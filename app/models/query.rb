@@ -7,4 +7,8 @@ class Query
   field :seen, type: Boolean
 
   has_many :responses  
+
+  def self.unread
+  	where(:seen => false)
+  end
 end
