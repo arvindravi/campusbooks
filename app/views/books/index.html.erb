@@ -12,8 +12,16 @@
     <td><%= link_to book.title, book %></td>
     <td><%= book.author %></td>
     <td><%= link_to 'Show', book %></td>
-    <td><%= link_to 'Edit', edit_book_path(book) %></td>
-    <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td>
+      <% if can? :edit, Book %>
+        <%= link_to 'Edit', edit_book_path(book) %>
+      <% end %>
+    </td>
+    <td>
+      <% if can? :destroy, Book %>
+        <%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>    
+    </td>        
     <td><%= link_to 'Buy', buy_book_path(book) %></td>
     <td>Posted by: <%= get_username_from_book_id book._id %></td>
   </tr>

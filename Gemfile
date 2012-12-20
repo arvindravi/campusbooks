@@ -23,6 +23,7 @@ gem 'mongoid'
 gem 'thin'
 gem 'omniauth-facebook'
 gem 'minitest'
+gem 'cancan'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

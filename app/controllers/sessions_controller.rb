@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
   def create
-    user = User.from_omniauth(env["omniauth.auth"])
-    puts user.inspect    
+    user = User.from_omniauth(env["omniauth.auth"])    
     session[:user_id] = user._id
     puts params[:reg_no]
     # session[:reg_no] = params[:reg_no]

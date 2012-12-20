@@ -9,6 +9,7 @@ class User
   field :oauth_token, type: String
   field :oauth_expires_at, type: Time
   field :reg_no, type: String, default: nil
+  field :admin, type: Boolean
 
   def self.from_omniauth(auth)  	
     where(auth.slice(:provider, :uid)).find_or_initialize_by.tap do |user|
