@@ -74,7 +74,7 @@
     var reg_no = reg_no_field.val(); 
     button.addClass("disabled");    
     button.attr('href','#');    
-    var re = /10(2|3|4)(0|1)(0|9)(4|1)0\d\d/
+    var re = /10(2|3|4)(0|1)(1|0|9)(4|1)0\d\d/
     reg_no_field.keydown(function(e){    
       if(reg_no_field.val().length == 9 && reg_no_field.val().match(re)){        
         button.removeClass("disabled");
