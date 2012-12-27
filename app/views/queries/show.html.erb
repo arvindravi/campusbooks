@@ -1,15 +1,44 @@
+<br />
 <div id="message">    
-    <div>
+  <div class="container">
+    <div class="row">
+    <br />
+    <br />
+    <div class="well">
       <h3>
-        <%= get_username_from_id @query.sender_id %>
-      </h3>
-    </div>
-    <div >
+        <%= get_username_from_id(@query.sender_id) %>
+        <br />
+        <small>
+          Book: <%= get_book_from_id(@query.book_id) %>
+        </small>
+      </h3>    
       <p>
         <%= @query.body %>
       </p>
-      <!-- Response Field here -->
-      
+    </div>
+      <hr />      
+   
+          <h4>
+            Responses
+          </h4>
+      <% @query.responses.each do |response| %>     
+        <div class="well">           
+          <h6>
+            <%= get_username_from_id(response.sender_id) %> :
+          </h6>
+            <p>
+              <%= response.body %>
+              
+            </p>
+          </div>     
+      <% end %>      
+      <!-- Response Field here -->      
+      <%= form_for [@query, Response.new] do |f| %>
+        <%= f.text_area :body %>
+        <%= f.submit :Send %>  
+      <% end %>
+        </div>
+      </div>    
     </div>           
 </div>  
 <%= link_to 'Back', queries_path %>

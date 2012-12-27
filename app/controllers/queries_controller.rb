@@ -3,7 +3,8 @@ class QueriesController < ApplicationController
 	def index
 	  messages = Query.where(receiver_id: session[:user_id])
 	  @unread_messages = messages.unread	
-	  @read_messages = messages.where(seen: true)
+	  @read_messages = messages.where(seen: true)	  
+	  @conversations = Query.where(_id: messages.last.responses.last.query_id)	  
 	end
 
 	def new		
@@ -33,8 +34,9 @@ class QueriesController < ApplicationController
 	end
 
 	def show
-		@query = Query.find_by(_id: params[:id])
-		@query.update_attributes(:seen => 'true')
+		@query = Query.find_by(_id: params[:id])		
+		@query.update_attribute(:seen,true)
+		@query.responses.last.update_attribute(:seen,true) if @query.responses.count > 0
 	end
 
 end

@@ -11,4 +11,8 @@ class Query
   def self.unread
   	where(:seen => false)
   end
+
+  def self.read
+    where(:seen => true)
+  end
 end

@@ -7,7 +7,10 @@ Campusbooks::Application.routes.draw do
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'  
-  resources :queries
+  resources :queries do
+   resources :responses
+  end
+  
   resources :books do    
     member do
       get 'buy'      

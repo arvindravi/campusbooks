@@ -1,2 +1,2 @@
-module ResponsesHelper
+module ResponsesHelper	
 end

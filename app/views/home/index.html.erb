@@ -43,12 +43,12 @@
           <h4>
             Notifications
           </h4>          
-          <% if @unread_messages.blank? %>
+          <% if @unread_messages.blank? or @unread_responses.blank? %>
             <p>
               You have no unread messages.
             </p>
-          <% else %>      
-            You have <span class="badge badge-info"><%= link_to @unread_messages.count, queries_path, :style => 'color:white;text-decoration:none;' %></span> unread message(s).
+          <% elsif @unread_messages or @unread_responses %>      
+            You have <span class="badge badge-info"><%= link_to @unread_count, queries_path, :style => 'color:white;text-decoration:none;' %></span> unread message(s).
           <% end %>
           
         </div>        
