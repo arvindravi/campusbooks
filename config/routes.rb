@@ -13,7 +13,8 @@ Campusbooks::Application.routes.draw do
   
   resources :books do    
     member do
-      get 'buy'      
+      get 'buy' 
+      get 'sold'     
     end    
     collection do
       get 'sell'      

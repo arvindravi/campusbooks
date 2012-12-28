@@ -6,13 +6,14 @@
 </h3>
 <% @mybooks.each do |mybook| %>
 <div>
-	<h4>
-		<%= mybook.title %>
-	</h4>
+	<h6>
+		<%= link_to mybook.title, book_path(mybook) %>
+	</h6>
 	<br />
 </div>
 <% end %>
 
+<hr />
 <h3>
 	Books
 </h3>

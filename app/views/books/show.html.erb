@@ -1,6 +1,14 @@
+<br />
+<br />
+
 <p id="notice"><%= notice %></p>
 
 <h2><%= @book.title %></h2>
+<div>
+	<% if @book.sold %>
+		<span class="label label-important">SOLD</span>
+	<% end %>
+</div>
 <p>
 	<%= @book.author %>
 </p>
@@ -12,7 +20,11 @@
 		Rs.<%= @book.price %>
 	</b>
 </p>
-<%= link_to 'Buy', buy_book_path(@book) %>
-
-<%= link_to 'Edit', edit_book_path(@book) %> |
+<% if can? :edit, Book %>	
+	<% if !@book.sold %>
+		<%= link_to 'Edit', edit_book_path(@book) %> | 
+		<%= link_to 'Buy', buy_book_path(@book) %> |
+		<%= link_to 'Click here if the Book is Sold', sold_book_path(@book) %> |
+	<% end %>
+<% end %>
 <%= link_to 'Back', books_path %>
