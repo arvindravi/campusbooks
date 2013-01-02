@@ -12,3 +12,7 @@
  *= require_tree .
  *= require 'font-awesome'
  */
+body 
+{
+	background: url('blacklinen/black-Linen.png') repeat;
+}

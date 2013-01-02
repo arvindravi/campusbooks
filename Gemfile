@@ -26,6 +26,7 @@ gem 'minitest'
 gem 'cancan'
 gem 'google_analytics'
 gem 'font-awesome-rails'
+gem 'google-webfonts'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
