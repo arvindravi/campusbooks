@@ -20,10 +20,15 @@
 		Rs.<%= @book.price %>
 	</b>
 </p>
+<% if !@book.sold %>
+  <% if can? :buy, Book %>
+    <%= link_to 'Buy', buy_book_path(@book) %>
+  <% end %>
+<% end %>
+ 
 <% if can? :edit, Book %>	
+    <%= link_to 'Edit', edit_book_path(@book) %> | 
 	<% if !@book.sold %>
-		<%= link_to 'Edit', edit_book_path(@book) %> | 
-		<%= link_to 'Buy', buy_book_path(@book) %> |
 		<%= link_to 'Click here if the Book is Sold', sold_book_path(@book) %> |
 	<% end %>
 <% end %>

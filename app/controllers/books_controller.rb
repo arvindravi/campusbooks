@@ -91,9 +91,6 @@ class BooksController < ApplicationController
   def sell
     user = User.find_by(_id: session[:user_id])    
     @mybooks = user.books.where(user_id: user._id)
-    # puts user.books.where(user_id: user._id).inspect
-    
-    @books = Book.where(:user_id.ne => user._id)
   end
 
   def sold
