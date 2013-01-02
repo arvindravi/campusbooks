@@ -1,10 +1,9 @@
 class QueriesController < ApplicationController
 
 	def index
-	  messages = Query.where(receiver_id: session[:user_id])
-	  @unread_messages = messages.unread	
-	  @read_messages = messages.where(seen: true)	  
-	  @conversations = Query.where(_id: messages.last.responses.last.query_id)	  
+	  @messages = Query.where(receiver_id: session[:user_id])
+	  @unread_messages = @messages.unread	
+	  @read_messages = @messages.where(seen: true)	  
 	end
 
 	def new		
