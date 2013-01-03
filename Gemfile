@@ -27,6 +27,9 @@ gem 'cancan'
 gem 'google_analytics'
 gem 'font-awesome-rails'
 gem 'google-webfonts'
+gem 'twitter-bootstrap-rails'
+gem 'will_paginate_mongoid'
+gem 'will_paginate-bootstrap'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

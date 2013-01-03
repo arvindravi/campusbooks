@@ -2,19 +2,37 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// h1.title {
+//   font-family: 'Amaranth', sans-serif;
+//   font-size: 90px;
+//   color: #47FF47;
+//   text-shadow: 3px 3px black;
+//   text-shadow: 0 0 7px #77FC77;
+// }
+
+// p.tagline {
+// 	margin-top: 5px;
+// 	font-family: 'Amaranth', sans-serif;
+// 	font-size: 18px;
+// 	color: white;
+// }
+
+$fill: #353738;
+$border-color: #353738;
+
 h1.title {
   font-family: 'Amaranth', sans-serif;
   font-size: 90px;
-  color: #47FF47;
-  text-shadow: 3px 3px black;
-  text-shadow: 0 0 7px #77FC77;
+  color: $fill;
+  text-shnadow: 3px 3px black;
+  text-shadow: 0 0 4px $border-color;
 }
 
 p.tagline {
 	margin-top: 5px;
 	font-family: 'Amaranth', sans-serif;
 	font-size: 18px;
-	color: white;
+	color: black;
 }
 
 .main-content {
@@ -26,7 +44,7 @@ p.tagline {
 
 .login {
 	position: absolute;
-	top: 65%;
+	top: 67%;
 	left: 70%;
 	height: 200px;
 	margin-top: -200px;
@@ -36,13 +54,13 @@ input[type=text]{
       padding:6px;
       font-family: 'Open Sans',sans-serif;
       font-size:15px;
-      border:1px solid #ccc;
+      border:1px solid $border-color;
       background: white;
       padding: 5px;
       margin-bottom: 10px;
       border-radius: 4px;
       height: 30px;
-      -webkit-transition: 1s ease-in-out all;
+      -webkit-transition: 0.5s ease-in-out all;
       -moz-transition: 0.5s ease-in-out all;
       -ms-transition: 0.5s ease-in-out all;
       -o-transition: 0.5s ease-in-out all;
@@ -50,13 +68,13 @@ input[type=text]{
 }
 
 input[type=text]:focus{ 
-      border-color:white;
-      -moz-box-shadow: 0px 0px 14px #dfdfdf;
-      -webkit-box-shadow: 0px 0px 14px #dfdfdf;
-      box-shadow: 0px 0px 14px #dfdfdf;
+      border-color: $border-color;
+      -moz-box-shadow: 0px 0px 14px $fill;
+      -webkit-box-shadow: 0px 0px 14px $fill;
+      box-shadow: 0px 0px 14px $fill;
 }
 
 .fb {
-	width: 190px;
+	width: 220px;
 	font-family: 'Open Sans',sans-serif;
 }

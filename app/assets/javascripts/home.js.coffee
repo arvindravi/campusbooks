@@ -14,9 +14,3 @@ $ ->
   		button.attr('href','/auth/facebook')
   		return
   return
-
-disableEnterKey = (e) ->
-  	key = if window.event then window.event.keyCode else e.which
-  	return key != 13
-
-

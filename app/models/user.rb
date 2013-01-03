@@ -11,7 +11,9 @@ class User
   field :reg_no, type: String, default: nil
   field :admin, type: Boolean
 
-  def self.from_omniauth(auth)  	
+  validates_uniqueness_of :reg_no
+
+  def self.from_omniauth(auth,reg_no)  	
     where(auth.slice(:provider, :uid)).find_or_initialize_by.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
@@ -20,7 +22,7 @@ class User
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
       user.oauth_token = auth.credentials.token
-      # user.reg_no = session[:reg_no]
+      user.reg_no = reg_no
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.save!      
     end    

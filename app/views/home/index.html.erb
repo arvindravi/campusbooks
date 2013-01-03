@@ -13,21 +13,13 @@
 	  		</div>
 	  	</div>
 	  	<div class="login">
-	  		<form id="registration_form" action="sessions/set" method="post" class="form-inline">           
-	  		  <input type="text" id="reg_no" autocomplete="off" class="input-large" placeholder="Enter your registration no." ><br /><br />
-	  		  <%= link_to '<i class="icon-facebook-sign" style="font-size:23px"></i>&nbsp;&nbsp;&nbsp;Sign in with Facebook'.html_safe, "/auth/facebook", id: "sign_in", :class => 'btn btn-large btn-success fb' %>
-	  		</form>
+	  		<%= form_tag('sessions/set') do -%>
+	  		  <%= text_field_tag 'reg_no', nil, :placeholder => 'Enter your registration no.', :autocomplete => 'off' %>
+	  		  <%= button_tag '<i class="icon-facebook-sign" style="font-size:23px"></i>&nbsp;&nbsp;&nbsp;Sign in with Facebook'.html_safe, :class => 'btn btn-large btn-inverse fb', :id => 'sign_in' %>
+	  		<% end -%>
 	  	</div>
 	  </div>
 	<% else %>
-	  <div class="row">
-	  	<br>
-	  	<br><br>
-	  	<div class="hero-unit">
-	  		<h1>
-	  			Welcome <%= current_user.first_name %> !
-	  		</h1>
-	  	</div>
-	  </div>
+	  
 	<% end %>
 </div>
