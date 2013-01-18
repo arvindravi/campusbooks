@@ -1,44 +1,73 @@
-<br />
-<div id="message">    
-  <div class="container">
-    <div class="row">
-    <br />
-    <br />
-    <div class="well">
-      <h3>
-        <%= get_username_from_id(@query.sender_id) %>
+<div class="container">
+  <div class="row well">
+    <div class="page-header">
+      <h1>
+        Conversation with <%= get_username_from_id(@query.receiver_id) %>
         <br />
         <small>
-          Book: <%= get_book_from_id(@query.book_id) %>
+          Book : <%= link_to @book.title, book_path(@book) %>
+          <div class="pull-right">
+             <%= link_to 'Back', queries_path, :class => 'act-info' %>
+          </div>
         </small>
-      </h3>    
+      </h1>
+    </div>
+    <div class="query well">
+      <div>
+        <%= image_tag @user.picture_url, :class => 'thumbnail', :style => 'vertical-align: middle' %>
+      </div>
+      <h5>
+        <%= @user.name %>
+      </h5>
       <p>
         <%= @query.body %>
       </p>
     </div>
-      <hr />      
-   
-          <h4>
-            Responses
-          </h4>
-      <% @query.responses.each do |response| %>     
-        <div class="well">           
-          <h6>
-            <%= get_username_from_id(response.sender_id) %> :
-          </h6>
-            <p>
-              <%= response.body %>
-              
-            </p>
-          </div>     
-      <% end %>      
-      <!-- Response Field here -->      
-      <%= form_for [@query, Response.new] do |f| %>
-        <%= f.text_area :body %>
-        <%= f.submit :Send %>  
+    <hr>
+    Res
+    <div class="responses">
+      <% if !@query.responses.blank? %>
+        <% @query.responses.each do |response| %>
+         <% if response.seen %>
+           <div class="well">
+             <div>
+                 <%= image_tag get_imgurl_from_id(response.sender_id), :class => 'thumbnail' %>
+             </div>
+             <div class="title">
+               <strong>
+                 <%= get_username_from_id(response.sender_id) %>
+               </strong>
+             </div>
+             <div class="content">
+               <p>
+                 <%= response.body %>
+               </p>
+             </div>
+           </div>
+          <% else %>
+            <div class="well">
+              <div>
+                  <%= image_tag get_imgurl_from_id(response.sender_id), :class => 'thumbnail' %>
+              </div>
+              <div class="title">
+                <strong>
+                  <%= get_username_from_id(response.sender_id) %>
+                </strong>
+              </div>
+              <div class="content">
+                <p>
+                  <strong>
+                    <%= response.body %>
+                  </strong>
+                </p>
+              </div>
+            </div>
+         <% end %>
+        <% end %>
       <% end %>
-        </div>
-      </div>    
-    </div>           
-</div>  
-<%= link_to 'Back', queries_path %>
+      <hr />
+      <% @response = @query.responses.new %>
+      <%= render 'responses/form', :response => @response, :query => @query %>
+    </div>
+  </div>
+</div>

@@ -24,22 +24,33 @@
 	<% if current_user %>
 	<div class="navbar navbar-fixed-top">
 	  <div class="navbar-inner">	  	
-	    <a class="brand" href="/" style="margin-left:10px;"><i class="iconic-book-alt2"></i>&nbsp;Campus Books</a>
+	    <a class="brand" href="/" style="margin-left:10px;"><i class="iconic-book-alt2" style="padding:4px"></i>&nbsp;Campus Books</a>
 	    	<ul class="nav pull-right">	    		  		
 	    		<li class="dropdown" style="padding-bottom:5px;">	    				    		
 	    			<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="#" style="padding-bottom: 0px;">
 	    				<div>
 	    					<img src="<%= current_user.picture_url %>" height="30" width="30" class="img-rounded" alt="<%= current_user.name %>">
 	    					<%= current_user.name %>
-	    					<i class="icon-chevron-down"></i>
+	    					<i class="icon-caret-down" style="padding:2px"></i>
 	    				</div>
 	    			</a>
 	    			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">		        
 	    				<li>
-	    					<%= link_to '<i class="iconic-book"></i> My Books'.html_safe, sell_books_path %>
+	    					<%= link_to '<i class="iconic-book"></i> Sell a Book'.html_safe, new_book_path %>
 	    				</li>
 	    				<li>
-	    					<%= link_to '<i class="iconic-comment-alt2-stroke"></i> Messages'.html_safe, queries_path %>
+	    					<%= link_to '<i class="iconic-book-alt2"></i> My Books'.html_safe, mybooks_books_path %>
+	    				</li>
+	    				<li>
+	    				
+	    					<a href="<%= queries_path %>">
+	    						<i class="iconic-comment-alt2-stroke"></i> Messages
+	    						  <% if notifications != 0 %>
+		    						  <span class="badge badge-success">
+		    						  	<%= notifications %>
+	    							  </span>
+	    						  <% end %>
+	    					</a>
 	    				</li>
 	    				<li class="divider"></li>
 	    				<li>
@@ -47,7 +58,7 @@
 	    				</li>
 	    			</ul>
 	    		</li>	    		
-	    	</ul>	       
+	    	</ul>	   
 	  </div>
 	</div>		
 	<% end %>

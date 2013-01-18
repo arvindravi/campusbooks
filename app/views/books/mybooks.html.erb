@@ -2,9 +2,9 @@
   <div class="row span12">
         <div class="page-header">
           <h1>
-            Books
+            My Books
             <small>
-              For Sale
+              Books I've posted
             </small>
           </h1>
         </div>
@@ -26,21 +26,22 @@
                 </p>
               </div>
               <hr>
-              <% if cannot? :manage, book %>
-                <div>
-                  <%= link_to '<i class="icon-shopping-cart icon-white" style="padding:4px"></i> Buy this book'.html_safe, buy_book_path(book), :class => 'btn btn-success' %>
-                </div>
-              <% else %>
-                <div>
-                  <%= link_to '<i class="icon-thumbs-up icon-white" style="padding:4px"></i> Mark as Sold'.html_safe, sold_book_path(book), :class => 'btn btn-info' %>
-                </div>
-              <% end %>
+              <p class="pull-left">
+              	Status : 
+              </p>
+              <p class="pull-right">
+              	<% if book.sold %>
+              	  <span class="badge badge-important">SOLD</span>
+              	<% else %>
+              	  <span class="badge badge-success">FOR SALE</span>
+              	<% end %>
+              </p>
             </div>
           <% end %>
         <% else %>
           <div >
             <p class="alert alert-error">
-              <i class="icon-exclamation-sign" style="color:maroon;font-size:20px;"></i>&nbsp;&nbsp;&nbsp;There are no books for sale right now.
+              <i class="icon-exclamation-sign" style="color:maroon;font-size:20px;"></i>&nbsp;&nbsp;&nbsp;You haven't posted any Books yet.
             </p>
           </div>
         <% end %>

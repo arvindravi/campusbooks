@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  rolify
   field :provider, type: String
   field :uid, type: String
   field :name, type: String  
@@ -9,7 +10,6 @@ class User
   field :oauth_token, type: String
   field :oauth_expires_at, type: Time
   field :reg_no, type: String, default: nil
-  field :admin, type: Boolean
 
   validates_uniqueness_of :reg_no
 
@@ -24,8 +24,9 @@ class User
       user.oauth_token = auth.credentials.token
       user.reg_no = reg_no
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      user.save!      
-    end    
+      user.grant :user
+      user.save!
+    end
   end
   
  has_many :books 

@@ -5,8 +5,9 @@ class Query
   field :receiver_id, type: String
   field :body, type: String
   field :seen, type: Boolean
+  field :created_at, type: DateTime, :default => Time.now
 
-  has_many :responses  
+  has_many :responses, dependent: :destroy
 
   def self.unread
   	where(:seen => false)

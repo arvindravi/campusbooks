@@ -11,6 +11,7 @@
  *= require_self
  *= require_tree .
  *= require 'font-awesome'
+ *= require select2
  */
 body 
 {
@@ -48,6 +49,8 @@ body
 }
 .button:hover {
     outline: none;
+    text-decoration: none;
+    color: black;
 }
 .button:hover,
 .button:focus {

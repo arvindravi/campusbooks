@@ -1,5 +1,14 @@
-To : <%= @user.first_name %><br />
-Book : <%= @book.title %><br />
-Author: <%= @book.author %><br />
-Price: <%= @book.price %>
-<%= render 'form' %>
+<div class="container">
+	<div class="row well">
+		<div class="page-header">
+			<h1>
+				Buy <%= link_to @book.title, book_path(@book) %>
+				<br />
+				<small>
+					Conversation with <%= @user.name %>
+				</small>
+			</h1>
+		</div>
+		<%= render 'form' %>
+	</div>
+</div>

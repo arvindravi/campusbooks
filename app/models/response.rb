@@ -5,6 +5,8 @@ class Response
   field :receiver_id, type: String
   field :seen, type: Boolean
 
+  validates_presence_of :body
+
   belongs_to :query
 
   def self.unread

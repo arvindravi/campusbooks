@@ -4,6 +4,11 @@ module ApplicationHelper
 		username = user.name
 	end
 
+	def get_imgurl_from_id(id)
+		user = User.find_by(_id: id)
+		img_url = user.picture_url
+	end
+
 	def get_book_from_id(id)
 		book = Book.find_by(_id: id)
 		name = book.title

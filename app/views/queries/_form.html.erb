@@ -1,5 +1,13 @@
-<%= form_for @query do |f| %>
-	<%= f.label :body %>
-	<%= f.text_area :body %>	
-	<%= f.submit :Send %>
+<%= form_for(@query) do |f| %>
+    <div>
+		<%= f.text_area :body, :cols => 80, :rows => 5, :class => 'span10', :placeholder => 'Enter your query here..' %>  	
+	</div>
+  	<div class="form-actions clearfix">
+  	  <%= button_tag(type: 'submit', class: "btn btn-success green ") do %>
+  	   <i class="icon-ok icon-white"></i> Send
+  	  <% end %>
+  	  <%= button_tag(type: 'reset', class: "btn white ") do %>
+  	   <i class="icon-refresh icon-white" style="padding:2px"></i> Reset
+  	  <% end %>
+  	</div>
 <% end %>

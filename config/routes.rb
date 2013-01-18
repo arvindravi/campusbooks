@@ -17,7 +17,7 @@ Campusbooks::Application.routes.draw do
       get 'sold'     
     end    
     collection do
-      get 'sell'      
+      get 'mybooks'      
     end
   end  
 

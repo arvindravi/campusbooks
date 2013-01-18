@@ -7,6 +7,7 @@ class HomeController < ApplicationController
   		# @unread_messages = @messages.where(seen: 'false').count
   		# @unread_count = @unread_responses + @unread_messages
   		# @books = Book.where(sold: false)
+      # @unread = Query.where(receiver_id: session[:user_id], seen: false)
   		redirect_to books_path
   	end
   end

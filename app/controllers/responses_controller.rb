@@ -7,7 +7,7 @@ class ResponsesController < ApplicationController
 	  query = Query.find_by(_id: params[:query_id])
 	  response = query.responses.new
 	  response.body = params[:response][:body]
-	  response.sender_id = query.receiver_id
+	  response.sender_id = session[:user_id]
 	  response.receiver_id = query.sender_id
 	  response.seen = false
 

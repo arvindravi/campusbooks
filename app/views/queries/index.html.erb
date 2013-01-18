@@ -1,36 +1,47 @@
-<br />
-<br />
-<div>
-	<% if @unread_messages.blank? %>
-		<h4>
-			You have no new messages!
-		</h4>
-	<% else %>
-		<% @unread_messages.each do |unread_message| %>
-			<b><%= link_to get_username_from_id(unread_message.sender_id), query_path(unread_message._id) %></b> <br />
-		<% end %>
-	<% end %>
+<div class="container">
+	<div class="well">
+		<div class="page-header">
+			<h1>
+				Messages
+				<small>
+					Unread : <%= notifications %>
+				</small>
+			</h1>
+		</div>
+		<div id="inbox">
+			<h4>Inbox</h4>
+			<% if !@messages.blank? %>
+			  <% @messages.each do |message| %>
+			    <div class="well">
+			    	<% if message.seen && !has_unread_responses?(message) %>
+			    	  <%= link_to message.body, query_path(message) %>
+			    	<% else %>
+			    	  <strong>
+			    	  	<%= link_to message.body, query_path(message) %>
+			    	  </strong>
+			    	<% end %>
+			    </div>
+			  <% end %>
+			<% else %>
+			  <p class="alert alert-danger">
+			    No Messages to display.
+			  </p>
+			<% end %>
+		</div>
+		<div id="sent">
+			<h4>Sent Messages</h4>
+			<%= @unread_responses_count %>
+			<% if !@sentmessages.blank? %>
+			  <% @sentmessages.each do |sent_message| %>
+			    <div class="well">
+			    	<%= link_to sent_message.body, query_path(sent_message) %>
+			    </div>
+			  <% end %>
+			<% else %>
+			  <p class="alert alert-danger">
+			  	No Messages to display.
+			  </p>
+			<% end %>
+		</div>
+	</div>
 </div>
-<hr />
-
-<h5>
-	Inbox - Read
-</h5>
-<div>
-	<% @read_messages.each do |read_message| %>	
-		<p>
-			<%= link_to get_username_from_id(read_message.sender_id), query_path(read_message._id) %> <br />
-		</p>	
-	<% end %>
-</div>
-<hr />
-<h5>My Conversations</h5>
-<div>
-	<% @messages.each do |convo| %>
-		<p>
-			<%= link_to get_username_from_id(convo.sender_id), query_path(convo._id) %> <br />
-		</p>
-	<% end %>
-</div>
-<hr />
-<%= link_to 'Home', root_path %>

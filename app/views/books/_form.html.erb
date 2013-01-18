@@ -1,26 +1,93 @@
 <%= form_for(@book) do |f| %>
-  <% if @book.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
-
-      <ul>
-      <% @book.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
   <div>
-    <%= f.label :title %>
-    <%= f.text_field  :title %><br />
-    <%= f.label :author %>
-    <%= f.text_field :author %><br />
-    <%= f.label :semester %>
-    <%= f.text_field :semester %><br />
-    <%= f.label :price %>
-    <%= f.text_field :price %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+    <% if @book.errors.any? %>
+      <div class="alert alert-danger">
+        
+        <h2>Danger!,Danger!</h2>
+        <ul>
+        <% @book.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <table class="table table-bordered table-striped">
+      <tr>
+        <td>
+          <strong>
+            <%= f.label :title %>
+          </strong>
+        </td>
+        <td>
+          <%= f.text_field :title, :placeholder => 'Enter a Title' %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>
+            <%= f.label :author %>
+          </strong>
+        </td>
+        <td>
+          <%= f.text_field :author, :placeholder => 'Enter the Author\'s Name' %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>
+            <%= f.label :semester %>
+          </strong>
+        </td>
+        <td>
+          <%= f.select :semester, (1..8) %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>
+            <%= f.label :price %>
+          </strong>
+        </td>
+        <td>
+          <div class="input-prepend input-append">
+            <span class="add-on">
+              &#8377;
+            </span>
+            <%= f.text_field :price, :class => 'input-mini' %>
+            <span class="add-on">
+              .00
+            </span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>
+            <%= f.label :pages %>
+          </strong>
+        </td>
+        <td>
+          <%= f.text_field :pages, :placeholder => 'Number of Pages' %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>
+            <%= f.label :isbn, "ISBN" %> <p class="muted">* Optional</p>
+          </strong>
+        </td>
+        <td>
+          <%= f.text_field :isbn, :placeholder => 'ISBN' %>
+        </td>
+      </tr>
+    </table>
+    <div class="form-actions clearfix">
+      <%= button_tag(type: 'submit', class: "btn btn-success green ") do %>
+       <i class="icon-ok icon-white"></i> <%= label %>
+      <% end %>
+      <%= button_tag(type: 'reset', class: "btn white ") do %>
+       <i class="icon-refresh icon-white" style="padding:2px"></i> Reset
+      <% end %>
+    </div>
   </div>
 <% end %>

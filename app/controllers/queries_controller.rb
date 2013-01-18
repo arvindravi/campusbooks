@@ -1,9 +1,9 @@
 class QueriesController < ApplicationController
 
 	def index
-	  @messages = Query.where(receiver_id: session[:user_id])
-	  @unread_messages = @messages.unread	
-	  @read_messages = @messages.where(seen: true)	  
+	  @user = User.find_by(_id: session[:user_id])
+	  @messages = Query.where(receiver_id: @user._id).desc(:created_at).paginate(:page => params[:page], :per_page => 4) || Response.where(receiver_id: @user._id)
+	  @sentmessages = Query.where(sender_id: @user._id).desc(:created_at).paginate(:page => params[:page], :per_page => 4)
 	end
 
 	def new		
@@ -25,7 +25,7 @@ class QueriesController < ApplicationController
 		@query.seen = false
 
 		if @query.save!
-		  redirect_to books_path, :notice => "Your message was sent successfully!"
+		  redirect_to query_path(@query), :notice => "Your message was sent successfully!"
 		else
 		  render action: "new", :notice => @query.errors, status: :unprocessable_entity
 		end
@@ -33,9 +33,20 @@ class QueriesController < ApplicationController
 	end
 
 	def show
-		@query = Query.find_by(_id: params[:id])		
-		@query.update_attribute(:seen,true)
-		@query.responses.last.update_attribute(:seen,true) if @query.responses.count > 0
+		# @user = User.find_by(_id: session[:user_id])
+		# @query = Query.find_by(_id: params[:id])	
+		# @book = Book.find_by(_id: @query.book_id)
+		# @query.update_attribute(:seen,true)
+		# @query.responses.last.update_attribute(:seen,true) if @query.responses.count > 0
+		# @response = @query.responses.new
+		@query = Query.find_by(_id: params[:id])
+		@user = User.find_by(_id: @query.sender_id)
+		if session[:user_id] === @query.receiver_id
+		  @query.update_attribute(:seen,true)
+		  @query.responses.update_all(seen: true)
+		end	
+		@book  = Book.find_by(_id: @query.book_id)
+		# @response = @query.responses.new
 	end
 
 end
