@@ -12,14 +12,27 @@
 			<h4>Inbox</h4>
 			<% if !@messages.blank? %>
 			  <% @messages.each do |message| %>
-			    <div class="well">
-			    	<% if message.seen && !has_unread_responses?(message) %>
-			    	  <%= link_to message.body, query_path(message) %>
-			    	<% else %>
-			    	  <strong>
-			    	  	<%= link_to message.body, query_path(message) %>
-			    	  </strong>
-			    	<% end %>
+			    <div class="well messages">
+			    	<div class="info">
+			    		<div class="pull-left">
+			    			<%= image_tag get_imgurl_from_id(message.sender_id), :class => 'thumbnail img-rounded' %>
+			    		</div>
+			    		<div class="name span4 pull-left">
+			    			<p>
+			    				<%= link_to get_username_from_id(message.sender_id), user_path(message.sender_id) %>
+			    			</p>
+			    		</div>
+			    	</div>
+			    	<span class="divider"></span>
+			    	<div class="message">
+			    		<% if message.seen && !has_unread_responses?(message) %>
+			    		  <%= link_to message.body, query_path(message) %>
+			    		<% else %>
+			    		  <strong>
+			    		  	<%= link_to message.body, query_path(message) %>
+			    		  </strong>
+			    		<% end %>
+			    	</div>
 			    </div>
 			  <% end %>
 			<% else %>

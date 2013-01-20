@@ -1,5 +1,6 @@
 Campusbooks::Application.routes.draw do
 
+
   post "sessions/set", to: 'sessions#set'
 
   get "home/index"
@@ -11,6 +12,8 @@ Campusbooks::Application.routes.draw do
    resources :responses
   end
   
+  resources :users
+
   resources :books do    
     member do
       get 'buy' 

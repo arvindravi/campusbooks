@@ -3,7 +3,10 @@ class QueriesController < ApplicationController
 	def index
 	  @user = User.find_by(_id: session[:user_id])
 	  @messages = Query.where(receiver_id: @user._id).desc(:created_at).paginate(:page => params[:page], :per_page => 4) || Response.where(receiver_id: @user._id)
-	  @sentmessages = Query.where(sender_id: @user._id).desc(:created_at).paginate(:page => params[:page], :per_page => 4)
+	  responses_sent = Response.where(sender_id: @user_id).desc(:created_at)
+	  queries_sent = Query.where(sender_id: @user_id).desc(:created_at)
+	  @sentmessages = responses_sent.zip(queries_sent).flatten.compact
+	  # @sentmessages = Query.where(sender_id: @user._id).desc(:created_at).paginate(:p age => params[:page], :per_page => 4)
 	end
 
 	def new		
