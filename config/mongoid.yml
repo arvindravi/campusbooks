@@ -82,4 +82,4 @@ test:
 production:
   sessions:
     default:
-      uri: <%= ENV['MONGOHQ_URL'] %>
+      uri: 'mongodb://heroku:53c702c66790d6dfe1a8e5805d81f18d@linus.mongohq.com:10065/app11472688'
